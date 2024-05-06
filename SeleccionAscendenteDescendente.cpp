@@ -17,15 +17,16 @@ void setup() {
   Serial.begin(9600);
 }
 
+//Funcion principal
 void loop() {
   
+  //Obtenemos si el usuario desea el contador ascendente o descendente
   Serial.println("Introduce 0 para ascendente o 1 para descendente:");
-  
   while (Serial.available() == 0){
   }
-  
   descendente = Serial.parseInt();
 
+	//Si es ascendente hacemos un ciclo para imprimir el contador en consola y en los LEDs
   if(descendente == 0){
     Serial.print("El usuario indica el contador ASCENDENTE.");
     Serial.print("\n");
@@ -37,6 +38,7 @@ void loop() {
     contador = 0;
     mostrarEnLEDs(contador);
   }
+  //Si es descendente hacemos lo mismo pero desde el maximo valor del contador hacia abajo
   else if(descendente == 1){
     Serial.print("El usuario indica el contador DESCENDENTE.");
     Serial.print("\n");
@@ -59,6 +61,7 @@ void mostrarEnLEDs(int valor) {
   digitalWrite(ledPin3, (valor >> 3) & 0x01);
 }
 
+//Funcion para imprimir el valor actual del contador en la consola
 void imprimirSerial(){
   String contadorEnBinario = "";
   if(contador == 0){
